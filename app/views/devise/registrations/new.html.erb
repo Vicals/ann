@@ -1,29 +1,129 @@
-<h2>Sign up!!</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "이메일" %>
+<body class="login-page sidebar-collapse">
+  <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit/index.html">
+          안상용 </a>
+    
+      </div>
+      
+    </div>
+  </nav>
+  <div class="page-header header-filter" style="background-image: url('../assets/bg7.jpg'); background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+          <div class="card card-login">
+              <div class="card-header card-header-primary text-center">
+                <h4 class="card-title">Sign Up</h4>
+              </div>
+              <p class="description text-center">Or Be Classical</p>
+              
+              
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+              
+             
+                
+              <div class="card-body">
+             
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">mail</i>
+                    </span>
+                  </div>
+                
+                  <%= f.email_field :email, class:"form-control", placeholder: "이메일" %>
+                  
+                </div>
+               
+                <div class="input-group" style="margin-top: 10px; padding-bottom: 0px;">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">lock_outline</i>
+                    </span>
+                  </div>
+                  
+                  <%= f.password_field :password, class:"form-control", placeholder: "새 비밀번호" %>
+                </div>
+                 <div class="input-group" style="margin-top: 0px; margin-left:50px;">
+                  <% if @minimum_password_length %>
+                  (<%= @minimum_password_length %> characters minimum)
+                  <% end %>
+                 </div>
+                <div class="input-group" style="margin-top: 10px;">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">lock_outline</i>
+                    </span>
+                  </div>
+                  <%= f.password_field :password_confirmation, class:"form-control", placeholder: "새 비밀번호" %>
+                </div>
+                
+                
+                
+                
+              </div>
+              
+                <div class="">
+                  <div style="margin-left:70px;">
+                     <% if devise_mapping.rememberable? -%>
+                      <div class="field">
+                        <%= f.check_box :remember_me %>
+                        <%= f.label :remember_me %>
+                      </div>
+                    <% end -%>
+                    <%= render "devise/shared/links" %>
+                  </div>
+                  <div class ="text-center" style="margin-bottom:30px; margin-top:30px">
+                    <%= f.submit "Sign up", class: "btn btn-primary btn-link btn-wd btn-lg"  %>
+                  </div>
+                </div>
+              
+              <% end %>
+                
+              
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <nav class="float-left">
+          <ul>
+            <li>
+              <a href="https://www.creative-tim.com">
+                Creative Tim
+              </a>
+            </li>
+            <li>
+              <a href="https://creative-tim.com/presentation">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="http://blog.creative-tim.com">
+                Blog
+              </a>
+            </li>
+            <li>
+              <a href="https://www.creative-tim.com/license">
+                Licenses
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright float-right">
+          &copy;
+          <script>
+            document.write(new Date().getFullYear())
+          </script>, made with <i class="material-icons">favorite</i> by
+          <a href="" target="_blank">Creative Tim</a> for a better web.
+        </div>
+      </div>
+    </footer>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "새 비밀번호" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "새 비밀번호" %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>

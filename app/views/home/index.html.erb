@@ -2,18 +2,7 @@
   <div class="container">
     <div class="navbar-translate">
       <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit/index.html">
-        
-        <% if user_signed_in? %>
-          <%= current_user.email %>
-          <%= link_to "로그아웃", destroy_user_session_path, data: {method: "delete"} %>
-        <% else %>
-          <%= link_to "Sign in", new_user_session_path %><br />
-          <%= link_to "Opret", new_user_session_path %><br />
-          
-        <% end %>
-        
         안상용 
-        
       </a>
         
       <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,12 +14,24 @@
     </div>
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav ml-auto">
+        
+        <% if user_signed_in? %>
         <li class="nav-item">
-            <button class="nav-link btn btn-link" onclick="openLoginModal()" style="color:inherit">로그인</button>
+          <div class="nav-link btn btn-link">
+            <%= current_user.email %>
+          </div>
         </li>
         <li class="nav-item">
-            <button class="nav-link btn btn-link" onclick="openRegisterModal()" style="color:inherit">회원가입</button>
-        </li>
+          <button class="nav-link btn btn-link">
+            <%= link_to "로그아웃", destroy_user_session_path, data: {method: "delete"}, style: "color:inherit!important" %>
+          </button>
+          <% else %>
+             <button class="nav-link btn btn-link" onclick="openLoginModal()" style="color:inherit">로그인</button>
+          </li>
+          <li class="nav-item">
+              <button class="nav-link btn btn-link" onclick="openRegisterModal()" style="color:inherit">회원가입</button>
+          </li>
+        <% end %>
         
         <li class="nav-item">
           <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank" data-original-title="Follow us on Twitter">
@@ -270,9 +271,9 @@
                               <div class="form loginBox">
                                   <!--<form method="post" action="/login" accept-charset="UTF-8">-->
                                   <!--<input id="email" class="form-control" type="text" placeholder="이메일을 입력하세요" name="email">-->
-                                  <%= f.email_field :email, :class =>"form-control",placeholder: "이메일을 입력하세요", value:"" %>
+                                  <%= f.email_field :email, :class =>"form-control custom_log_box",placeholder: "이메일을 입력하세요", value:"" %>
                                   <!--<input id="password" class="form-control" type="password" placeholder="비밀번호를 입력하세요" name="password">-->
-                                  <%= f.password_field :password,:label =>"Password", :class =>"form-control", placeholder:"비밀번호를 입력하세요", value:""%>
+                                  <%= f.password_field :password,:label =>"Password", :class =>"form-control custom_log_box", placeholder:"비밀번호를 입력하세요", value:""%>
                                   <!--<input class="btn btn-default btn-login" type="button" value="로그인" onclick="loginAjax()">-->
                                   <%= f.submit '로그인', :class =>"btn btn-default btn-login" %>
                                   <!--</form>-->
@@ -289,11 +290,11 @@
                            <!--<div class="form">-->
                               <!--<form method="post" html="{:multipart=>true}" data-remote="true" action="/register" accept-charset="UTF-8">-->
                               <!--<input id="email" class="form-control" type="text" placeholder="이메일을 입력하세요." name="email">-->
-                              <%= f.email_field :email, :class =>"form-control", placeholder: "이메일을 입력하세요.", :stlye => "margin-bottom:5px" %>
+                              <%= f.email_field :email, :class =>"form-control custom_log_box", placeholder: "이메일을 입력하세요.", :stlye => "margin-bottom:5px" %>
                               <!--<input id="password" class="form-control" type="password" placeholder="비밀번호를 입력하세요." name="password">-->
-                              <%= f.password_field :password, :class =>"form-control", placeholder: "비밀번호를 입력하세요." %>
+                              <%= f.password_field :password, :class =>"form-control custom_log_box", placeholder: "비밀번호를 입력하세요." %>
                               <!--<input id="password_confirmation" class="form-control" type="password" placeholder="비밀번호를 확인하세요." name="password_confirmation">-->
-                              <%= f.password_field :password_confirmation, :class =>"form-control", placeholder: "비밀번호를 확인하세요." %>
+                              <%= f.password_field :password_confirmation, :class =>"form-control custom_log_box", placeholder: "비밀번호를 확인하세요." %>
                               <!--<input class="btn btn-default btn-register" type="submit" value="회원가입" name="commit">-->
                               <%= f.submit "회원가입", :class =>"btn btn-default btn-login" %>
                               <!--</form>-->
@@ -332,6 +333,13 @@
 
 
 
+<style>
+  .custom_log_box{
+    height: 42px!important;
+    margin: 4px;
+    padding: 3px!important;
+  }
+</style>
 
 
 <!--   Core JS Files   -->
